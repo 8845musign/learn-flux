@@ -1,0 +1,22 @@
+{
+  "name": "small-flux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -d -e src/App.js -t [ babelify --presets [ es2015 react ] ]  -o build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
+}
