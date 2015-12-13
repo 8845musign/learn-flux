@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -d -e src/App.js -t [ babelify --presets [ es2015 react ] ]  -o build.js"
+    "test": "browserify -d -e src/App.js -t [ babelify --presets [ es2015 react ] ] -o build.js"
   },
   "author": "",
   "license": "ISC",

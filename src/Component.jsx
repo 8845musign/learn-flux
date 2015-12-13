@@ -1,34 +1,40 @@
 "use strict";
 import React from "react"
-import ActionCreator from "./ActionCreator"
+import ActionCreator from "./Action"
 import Store from "./Store"
-import EventEmitter from "./EventEmitter"
-
-var dispatcher  = new EventEmitter();
-var action      = new ActionCreator(dispatcher);
-var store       = new Store(dispatcher);
 
 export default class Component extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {count: store.getCount()};
-        store.on("CHANGE", () => {
-            this._onChange();
-        });
+    constructor(...args) {
+        super(...args);
+        this.store = this.props.context.store;
+        this.state = {
+            count: this.store.getCount()
+        };
     }
 
     _onChange() {
-        this.setState({count: store.getCount()});
+        this.setState({
+            count: this.store.getCount()
+        });
+    }
+    
+    componentDidMount() {
+        this.store.onChange(this._onChange.bind(this));
+    }
+    
+    componentWillUnMount() {
+        this.store.removeAllChangeListeners();
     }
 
-    tick() {
-        action.countUp(this.state.count + 1);
+    onCountUp() {
+        var { context } = this.props; 
+        context.action.countUp();
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.tick.bind(this)}>Count Up</button>
+                <button onClick={this.onCountUp.bind(this)}>Count Up</button>
 
                 <p>
                     Count: {this.state.count}
