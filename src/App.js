@@ -2,12 +2,12 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Component from "./Component.jsx";
-import Context from "./Context"
+import Store from "./Store"
+import Provider from "./Provider.jsx";
 
-var context = new Context();
+let store = Store();
 
 ReactDOM.render(
-    React.createElement(Component, { context }),
+    <Provider store={store}/>,
     document.getElementById('app')
 )

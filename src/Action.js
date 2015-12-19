@@ -1,11 +1,5 @@
-import {Action} from "material-flux"
+import * as types from './ActionTypes';
 
-export const keys = {
-    "countUp" : "countUp"
-}
-
-export default class CountUpAction extends Action {
-    countUp() {
-        this.dispatch(keys.countUp);
-    }
+export function increment(num) {
+    return { type : types.INCREMENT, data: num }
 }
